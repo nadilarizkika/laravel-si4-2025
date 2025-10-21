@@ -19,3 +19,11 @@ Route::get('/profile', function () {
     return view('profile', compact('nama'));
     // return view('profile)->with('nama',$nama);
 });
+
+Route::get('array', function(){
+    $nilai_awal = 1;
+    while ($nilai_awal <= 100){
+        echo'Hello Laravel' . $nilai_awal . 'x <br>';
+        $nilai_awal++;
+    }
+});
