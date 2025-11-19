@@ -18,7 +18,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/mahasiswa">Mahasiswa</a>
+          <a class="nav-link active" aria-current="page" href="/mahasiswa">Pasien</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/profile">Profile</a>
@@ -36,67 +36,31 @@
 </nav>
 
 <div class="container">
-<h1> Ini adalah halaman Mahasiswa</h1>
+<h1> Ini adalah halaman Pasien</h1>
 
 <div class="row">
   <div class="col-sm-6">
-    <h4>Tabel Mahasiswa</h4>
+    <h4>Tabel Pasien</h4>
+  </div>
+  <div class="col-sm-6" style="text-align: right">
+    <a href='/pasien/create' class="btn btn-info btn-sm">Tambah Pasien</a>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
     <table class="table table-danger table-sm table-hover table-striped table-bordered text-center">
       <thead>
         <tr>
-          <th>NPM</th>
-          <th>Nama Mahasiswa</th>
-          <th>Jenis Kelamin</th>
-          <th COLSPAN="2">TTL</th>
+          <th>NIK</th>
+          <th>Nama Pasien</th>
+          <th>Tanggal Lahir</th>
         </tr>
       </thead>
       <tbody>
-        @for ($i = 0; $i < $jumlah; $i++)
-        <tr>
-          <td>{{ $npm[$i] }}</td>
-          <td>{{ $nama[$i] }}</td>
-          <td>Laki-Laki</td>
-          <td>Kota Medan</td>
-        </tr>   
-        @endfor
+        
       </tbody>
     </table>
-  </div>
-
-  <div class="col-sm-6">
-    <h4>Form Mahasiswa</h4>
-    <form action="" method="GET">
-      <div class="row">
-        <div class="col-sm-6">
-          <label for="">NPM</label>
-          <input type="number" name="npm" class="form-control" placeholder="Input NPM">
-        </div>
-        <div class="col-sm-6">
-          <label for="">Nama Mahasiswa</label>
-          <input type="text" name="nama_mahasiswa" class="form-control" placeholder="Input Nama Mahasiswa">
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
-          <label for="">Tanggal Lahir</label>
-          <input type="date" name="tanggal_lahir" class="form-control">
-        </div>
-        <div class="col-sm-6">
-          <label for="">Prodi</label>
-          <select name="prodi" class="form-control">
-            <option>Sistem Informasi</option>
-            <option>Teknik Informasi</option>
-            <option>Sains Data</option>
-          </select>
-        </div>
-      </div>
-      <div class="row mt-2">
-        <div class="col-sm-12">
-          <button class="btn btn-primary" style="width:100%" type="submit">Simpan</button>
-        </div>
-      </div>
-      </div>
-    </form>
   </div>
 </div>
 
