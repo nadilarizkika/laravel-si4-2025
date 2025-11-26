@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Mahasiswa</title>
+    <title>Pasien</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 </head>
 <body>
@@ -36,25 +36,37 @@
 </nav>
 
 <div class="container">
-<h1> Ini adalah halaman Tambah Pasien</h1>
+<h1>Halaman Tambah Pasien</h1>
 
   <div class="col-sm-12">
     <h4>Form Pasien</h4>
-    <form action="" method="GET">
+
+    @if ($errors->any())
+        <div class="pt-3">
+          <div class="alert alert-danger">
+            <ul>
+              @foreach ($errors->all() as $item)
+                  <li>{{ $item }}</li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+    @endif
+
+    <form action="/pasien" method="POST">
+      @csrf
       <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="">NIK</label>
-          <input type="number" name="npm" class="form-control" placeholder="Input NPM">
+          <input type="number" name="nik" class="form-control" placeholder="Input NIK" value="{{Session::get('nik')}}">
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="">Nama Pasien</label>
-          <input type="text" name="nama_mahasiswa" class="form-control" placeholder="Input Nama Mahasiswa">
+          <input type="text" name="nama_pasien" class="form-control" placeholder="Input Nama Pasien" value="{{Session::get('nama_pasien')}}">
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-4">
           <label for="">Tanggal Lahir</label>
-          <input type="date" name="tanggal_lahir" class="form-control">
+          <input type="date" name="tgl_lahir" class="form-control" value="{{Session::get('tgl_lahir')}}">
         </div>
       </div>
       <div class="row mt-2">

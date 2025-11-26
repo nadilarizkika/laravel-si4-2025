@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pasien;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class PasienController extends Controller
 {
@@ -11,7 +13,7 @@ class PasienController extends Controller
      */
     public function index()
     {
-        return view ('pasien/pasien');
+        return view ('pasien/index');
     }
 
     /**
@@ -27,7 +29,30 @@ class PasienController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Session::flash('nik', $request->nik);
+        Session::flash('nama_pasien', $request->nama_pasien);
+        Session::flash('tgl_lahir', $request->tgl_lahir);
+
+        $request->validate([
+            'nik' => 'required|numeric|unique:pasien,nik',
+            'nama_pasien' => 'required',
+            'tgl_lahir' => 'required'
+        ],
+        [
+            'nik.required' => 'NIK tidak boleh kosong!',
+            'nik.numeric' => 'NIK harus diisi dalam bentuk angka!',
+            'nik.unique' => 'NIK sudah ada sebelumnya!',
+            'nama_pasien.required' => 'Nama Pasien tidak boleh kosong!',
+            'tgl_lahir.required' => 'Tanggal Lahir tidak boleh kosong!'
+        ]);
+
+        $data = [
+            'nik' => $request->nik,
+            'nama_pasien' => $request->nama_pasien,
+            'tgl_lahir' => $request->tgl_lahir
+        ];
+        pasien::create($data);
+        return redirect('/pasien')->with('success', 'Data Berhasil Ditambahkan');
     }
 
     /**
